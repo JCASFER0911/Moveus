@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Hi Movers! | MOVEUS</title>
+  <!-- Font Awesome for icons (optional, but adds visual appeal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f9fafc;
+      color: #1e2b3a;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER with main title */
+    .main-header {
+      background: linear-gradient(135deg, #0a2f44 0%, #1b4f6e 100%);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-header h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-header h1 i {
+      color: #ffd966;
+      margin: 0 0.4rem;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      padding-top: 1rem;
+    }
+
+    .tagline strong {
+      font-weight: 600;
+      color: #ffd966;
+    }
+
+    /* Navigation / Section tabs */
+    .nav-sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      cursor: pointer;
+      color: #1e3b4f;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn i {
+      font-size: 1rem;
+      color: #2c6b8a;
+    }
+
+    .nav-btn:hover {
+      background: #e6f0f7;
+      color: #0a2f44;
+    }
+
+    .nav-btn.active {
+      background: #1b4f6e;
+      color: white;
+      box-shadow: 0 4px 10px rgba(27, 79, 110, 0.3);
+    }
+
+    .nav-btn.active i {
+      color: white;
+    }
+
+    /* Container for dynamic sections */
+    .sections-container {
+      flex: 1;
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    .section-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      border: 1px solid #edf2f7;
+      transition: all 0.2s;
+    }
+
+    .section-card h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0a2f44;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-left: 8px solid #ffb347;
+      padding-left: 1.2rem;
+    }
+
+    .section-card h2 i {
+      color: #ffb347;
+      font-size: 2rem;
+    }
+
+    .section-subhead {
+      color: #4a5e6e;
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+      font-weight: 400;
+      border-bottom: 1px solid #e9eef3;
+      padding-bottom: 1rem;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .info-card {
+      background: #fafdff;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #dde7ef;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px rgba(0, 40, 70, 0.08);
+      border-color: #b9d2e3;
+    }
+
+    .info-card i {
+      font-size: 2.2rem;
+      color: #1b4f6e;
+      background: #e0edf7;
+      padding: 0.7rem;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .info-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0a2f44;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card p {
+      color: #2e4457;
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .info-card li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
+
+    .info-card li i.fa-check-circle {
+      color: #2c8c5c;
+      font-size: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .info-card li i.fa-calendar-alt,
+    .info-card li i.fa-clock,
+    .info-card li i.fa-map-marker-alt {
+      color: #1b4f6e;
+      width: 1.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffb347;
+      color: #0a2f44;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      margin-top: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    /* Utility */
+    .highlight {
+      background: #eef7ff;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-top: 1.8rem;
+      border-left: 5px solid #ffb347;
+      font-size: 1rem;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: #1b4f6e;
+      color: white;
+      font-weight: 500;
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-top: 0.8rem;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: #0f3a52;
+    }
+
+    /* Footer */
+    .footer {
+      background: #0a2f44;
+      color: #bdd3e3;
+      text-align: center;
+      padding: 1.8rem 1.5rem;
+      font-size: 0.95rem;
+      margin-top: 2rem;
+    }
+
+    .footer strong {
+      color: #ffd966;
+    }
+
+    /* Hidden class for sections */
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .main-header h1 {
+        font-size: 2.4rem;
+      }
+      .section-card {
+        padding: 1.8rem 1.2rem;
+      }
+      .section-card h2 {
+        font-size: 1.7rem;
+      }
+      .nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      .nav-btn i {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TITLE: ¡Hi Movers! -->
+  <header class="main-header">
+    <h1>¡Hi Movers! <i class="fas fa-hand-peace"></i></h1>
+    <div class="tagline">
+      <strong>MOVEUS</strong> — We make your Erasmus in Sevilla bureaucracy-free.
+    </div>
+  </header>
+
+  <!-- Navigation tabs for sections -->
+  <nav class="nav-sections">
+    <button class="nav-btn active" id="btn-procedures" data-section="procedures">
+      <i class="fas fa-file-alt"></i> Procedures
+    </button>
+    <button class="nav-btn" id="btn-scholarships" data-section="scholarships">
+      <i class="fas fa-graduation-cap"></i> Scholarships
+    </button>
+    <button class="nav-btn" id="btn-news" data-section="news">
+      <i class="fas fa-newspaper"></i> News
+    </button>
+    <button class="nav-btn" id="btn-talks" data-section="talks">
+      <i class="fas fa-chalkboard-teacher"></i> Informative Talks
+    </button>
+  </nav>
+
+  <!-- Sections container -->
+  <main class="sections-container">
+    <!-- 1. PROCEDURES SECTION (visible by default) -->
+    <section id="procedures" class="section-card">
+      <h2><i class="fas fa-clipboard-list"></i> Procedures</h2>
+      <div class="section-subhead">Step-by-step support for every administrative task</div>
+      
+      <div class="card-grid">
+        <div class="info-card">
+          <i class="fas fa-id-card"></i>
+          <h3>TIE Card & NIE</h3>
+          <p>We guide you through obtaining your foreigner identity number and card.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Appointment booking</li>
+            <li><i class="fas fa-check-circle"></i> Form filling (EX-15, EX-18)</li>
+            <li><i class="fas fa-check-circle"></i> Document checklist</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-home"></i>
+          <h3>Empadronamiento</h3>
+          <p>Register your address in Sevilla — mandatory for many procedures.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Certificate of registration</li>
+            <li><i class="fas fa-check-circle"></i> Renewal reminders</li>
+            <li><i class="fas fa-check-circle"></i> Online & in-person support</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-university"></i>
+          <h3>University Enrollment</h3>
+          <p>From registration to course selection — we help you settle in.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Learning agreement review</li>
+            <li><i class="fas fa-check-circle"></i> Transcript of records</li>
+            <li><i class="fas fa-check-circle"></i> Erasmus coordinator contact</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-heartbeat"></i>
+          <h3>Health Insurance</h3>
+          <p>Access public healthcare or validate your European Health Insurance Card.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> EHIC guidance</li>
+            <li><i class="fas fa-check-circle"></i> Private insurance options</li>
+            <li><i class="fas fa-check-circle"></i> Health center registration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <i class="fas fa-info-circle" style="color: #1b4f6e; margin-right: 0.6rem;"></i>
+        <strong>Full-process support:</strong> We stay with you from day one until your last signature. No stress, just Movers!
+      </div>
+    </section>
+
+    <!-- 2. SCHOLARSHIPS SECTION (hidden) -->
+    <section id="scholarships" class="section-card hidden">
+      <h2><i class="fas fa-award"></i> Scholarships & Grants</h2>
+      <div class="section-subhead">Funding opportunities for Erasmus students in Sevilla</div>
+      
+      <div class="card-grid">
+        <div class="info-card">
+          <i class="fas fa-euro-sign"></i>
+          <h3>Erasmus+ Grant</h3>
+          <p>EU funding for your exchange period — we help you maximize it.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Application checklist</li>
+            <li><i class="fas fa-check-circle"></i> Document review</li>
+            <li><i class="fas fa-check-circle"></i> Payment timeline</li>
+          </ul>
+          <span class="badge">Deadline: Oct 15</span>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-building"></i>
+          <h3>Regional & Local Grants</h3>
+          <p>Andalusian and Sevilla-specific scholarships for international students.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Junta de Andalucía aid</li>
+            <li><i class="fas fa-check-circle"></i> University of Sevilla grants</li>
+            <li><i class="fas fa-check-circle"></i> Eligibility check</li>
+          </ul>
+          <span class="badge">Rolling basis</span>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-globe"></i>
+          <h3>MOVEUS Support Fund</h3>
+          <p>Our own micro-grants for students facing unexpected bureaucratic costs.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Up to €150 per student</li>
+            <li><i class="fas fa-check-circle"></i> Simple application</li>
+            <li><i class="fas fa-check-circle"></i> Fast resolution</li>
+          </ul>
+          <span class="badge">Apply anytime</span>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-file-invoice"></i>
+          <h3>Fee Waivers</h3>
+          <p>Learn which administrative fees can be reduced or waived for Erasmus.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> TIE fee exemptions</li>
+            <li><i class="fas fa-check-circle"></i> University fee discounts</li>
+            <li><i class="fas fa-check-circle"></i> Legal support</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <i class="fas fa-lightbulb" style="color: #ffb347; margin-right: 0.6rem;"></i>
+        <strong>Did you know?</strong> Many students miss out on travel grants for their Erasmus+ mobility. We help you apply for everything you're entitled to.
+      </div>
+    </section>
+
+    <!-- 3. NEWS SECTION (hidden) -->
+    <section id="news" class="section-card hidden">
+      <h2><i class="fas fa-bullhorn"></i> Latest News</h2>
+      <div class="section-subhead">Updates, tips and alerts for the Erasmus community in Sevilla</div>
+      
+      <div class="card-grid">
+        <div class="info-card">
+          <i class="fas fa-calendar-check"></i>
+          <h3>New TIE appointment system</h3>
+          <p>The Sevilla immigration office has launched an online queue — we explain how to get an earlier slot.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Posted: 2 days ago</li>
+            <li><i class="fas fa-tag"></i> Procedures</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-people-arrows"></i>
+          <h3>Erasmus Welcome Day – Sept 20</h3>
+          <p>Meet other Movers and get your welcome pack at our stand in the University of Sevilla main hall.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Posted: 1 week ago</li>
+            <li><i class="fas fa-tag"></i> Community</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-wifi"></i>
+          <h3>Free SIM cards for Erasmus</h3>
+          <p>Local telecom offers 20GB/month for incoming students. We show you how to claim yours.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Posted: 2 weeks ago</li>
+            <li><i class="fas fa-tag"></i> Deals</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-clock"></i>
+          <h3>Extended Empadronamiento hours</h3>
+          <p>Sevilla city council now offers afternoon appointments for address registration.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Posted: 3 weeks ago</li>
+            <li><i class="fas fa-tag"></i> Procedures</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <i class="fas fa-envelope" style="color: #1b4f6e; margin-right: 0.6rem;"></i>
+        <strong>Subscribe to our newsletter:</strong> Get weekly updates directly in your inbox. No spam, just useful Movers info.
+      </div>
+    </section>
+
+    <!-- 4. INFORMATIVE TALKS SECTION (hidden) -->
+    <section id="talks" class="section-card hidden">
+      <h2><i class="fas fa-chalkboard-teacher"></i> Informative Talks</h2>
+      <div class="section-subhead">Live sessions to clear all your doubts</div>
+      
+      <div class="card-grid">
+        <div class="info-card">
+          <i class="fas fa-video"></i>
+          <h3>Erasmus Bureaucracy 101</h3>
+          <p>Everything you need to know in 60 minutes — TIE, empadronamiento, health insurance and more.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Date: Every Tuesday</li>
+            <li><i class="fas fa-clock"></i> Time: 17:00 – 18:00</li>
+            <li><i class="fas fa-map-marker-alt"></i> Online (Zoom)</li>
+          </ul>
+          <button class="btn-cta">Save my spot</button>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-users"></i>
+          <h3>Meet & Greet: Movers Talk</h3>
+          <p>Informal chat with former Erasmus students and our advisors. Bring your questions!</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Date: Sept 28</li>
+            <li><i class="fas fa-clock"></i> Time: 18:30 – 20:00</li>
+            <li><i class="fas fa-map-marker-alt"></i> MOVEUS Hub, Calle Betis 12</li>
+          </ul>
+          <button class="btn-cta">Reserve a seat</button>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-file-signature"></i>
+          <h3>Scholarships & Grants Workshop</h3>
+          <p>Learn how to apply for Erasmus+ and local grants without missing deadlines.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Date: Oct 5</li>
+            <li><i class="fas fa-clock"></i> Time: 16:00 – 17:30</li>
+            <li><i class="fas fa-map-marker-alt"></i> Online (Zoom)</li>
+          </ul>
+          <button class="btn-cta">Sign up</button>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-home"></i>
+          <h3>Housing & Empadronamiento Clinic</h3>
+          <p>Step-by-step help with rental contracts and address registration. Bring your documents.</p>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Date: Oct 12</li>
+            <li><i class="fas fa-clock"></i> Time: 11:00 – 13:00</li>
+            <li><i class="fas fa-map-marker-alt"></i> MOVEUS Hub, Calle Betis 12</li>
+          </ul>
+          <button class="btn-cta">Book a slot</button>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <i class="fas fa-question-circle" style="color: #ffb347; margin-right: 0.6rem;"></i>
+        Can't attend live? All talks are recorded and shared with registered participants. Drop us a line at <strong>hello@moveus.es</strong>.
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>MOVEUS</strong> — Helping Erasmus students in Sevilla since 2018. <i class="fas fa-heart" style="color: #ffb347;"></i></p>
+    <p style="font-size: 0.85rem; opacity: 0.8;">© 2025 MOVEUS. All procedures, scholarships, news and talks in one place.</p>
+  </footer>
+
+  <!-- JavaScript to switch sections -->
+  <script>
+    (function() {
+      const sections = {
+        procedures: document.getElementById('procedures'),
+        scholarships: document.getElementById('scholarships'),
+        news: document.getElementById('news'),
+        talks: document.getElementById('talks')
+      };
+
+      const buttons = {
+        procedures: document.getElementById('btn-procedures'),
+        scholarships: document.getElementById('btn-scholarships'),
+        news: document.getElementById('btn-news'),
+        talks: document.getElementById('btn-talks')
+      };
+
+      // Function to activate a specific section
+      function showSection(sectionId) {
+        // Hide all sections
+        Object.keys(sections).forEach(id => {
+          sections[id].classList.add('hidden');
+        });
+        // Show the selected section
+        sections[sectionId].classList.remove('hidden');
+
+        // Update active button style
+        Object.keys(buttons).forEach(id => {
+          if (id === sectionId) {
+            buttons[id].classList.add('active');
+          } else {
+            buttons[id].classList.remove('active');
+          }
+        });
+      }
+
+      // Attach click listeners to navigation buttons
+      Object.keys(buttons).forEach(id => {
+        buttons[id].addEventListener('click', () => {
+          showSection(id);
+        });
+      });
+
+      // Ensure procedures is shown by default (already visible, but just in case)
+      // The 'procedures' section doesn't have hidden class initially, others do.
+      // Also set active button accordingly.
+      showSection('procedures');
+    })();
+  </script>
+</body>
+</html>
